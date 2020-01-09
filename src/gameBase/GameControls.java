@@ -2,32 +2,47 @@ package gameBase;
 import home.userProperties.Player;
 
 public class GameControls {
-    static boolean ternoWon,quaternaWon,cinquinaWon = false;
+    public static boolean ternoWon,quaternaWon,cinquinaWon = false;
 
-    /*the winner control*/
-    private synchronized static void controller(int value,Player player) {
+    /**
+     * This method check if a player win something
+     * if the player win the reward it will no
+     * longer be accessible
+     * @param value
+     * @param player
+     */
+    private synchronized static void controller(int value, Player player) {
         switch (value) {
             case 3:
                 if(!ternoWon)
                 System.out.println("terno " + player.getName());
+                //TODO
                 break;
             case 4:
                 if(!quaternaWon)
                 System.out.println("quaterna "+ player.getName());
+                //TODO
                 break;
             case 5:
                 if(!cinquinaWon)
                 System.out.println("cinquina "+ player.getName());
+                //TODO
                 break;
             case 15:
                 System.out.println("tombola "+ player.getName());
                 /*then take back the player to the start screen*/
+                //TODO
                 System.exit(0);
                 break;
         }
     }
 
-    /*the number control*/
+    /**
+     * This method create a thread that run
+     * in max priority, updating the "cards"
+     * everytime a AI player win something
+     * @param player
+     */
     public void numbersCardControl(Player player) {
         Thread thread = new Thread(() -> {
             while (true)
@@ -36,9 +51,12 @@ public class GameControls {
         thread.start();
         thread.setPriority(Thread.MAX_PRIORITY);
     }
-
-
-
+    /**
+     * this method checks and updates
+     * if a player wins
+     * @param card
+     * @param player
+     */
     private void controllingNumber(String [][] card,Player player){
         String tmp [] = new String[90];
         int count = 0,countOne = 0,countTwo = 0,tombola = 0;
@@ -70,64 +88,15 @@ public class GameControls {
             }
         }
     }
-
+    /**
+     * This method check is one of the
+     * players win something
+     * @param value
+     */
     private static void booleanControler(int value){
         if(value == 3)ternoWon = true;
         if(value == 4)quaternaWon = true;
         if(value == 5) cinquinaWon = true;
     }
 
-    public static void main(String[] args) {
-        GameFunction function = new GameFunction();
-        function.outNumber();
-        GameControls contrl = new GameControls();
-        Player player = new Player(
-                "andrea","luiu",
-                "andrea.luiu@libero.it","spero",22,new BingoCard());
-        Player player2 = new Player(
-                "gino","spirolello",
-                "andrea.luiu@libero.it","spero",22,new BingoCard());
-        Player player3 = new Player(
-                "francesca","luiu",
-                "andrea.luiu@libero.it","spero",22,new BingoCard());
-        Player player4 = new Player(
-                "monica","spirolello",
-                "andrea.luiu@libero.it","spero",22,new BingoCard());
-        Player player5 = new Player(
-                "silvano","luiu",
-                "andrea.luiu@libero.it","spero",22,new BingoCard());
-        Player player6 = new Player(
-                "oscar","spirolello",
-                "andrea.luiu@libero.it","spero",22,new BingoCard());
-
-        player.getBingoCard().creationCard();
-        player2.getBingoCard().creationCard();
-        player3.getBingoCard().creationCard();
-        player4.getBingoCard().creationCard();
-        player5.getBingoCard().creationCard();
-        player6.getBingoCard().creationCard();
-
-        player.getBingoCard().printingCard();
-        System.out.println("\n////////////////////////////////7\n");
-        player2.getBingoCard().printingCard();
-        System.out.println("\n////////////////////////////////7\n");
-        player3.getBingoCard().printingCard();
-        System.out.println("\n////////////////////////////////7\n");
-        player4.getBingoCard().printingCard();
-        System.out.println("\n////////////////////////////////7\n");
-        player5.getBingoCard().printingCard();
-        System.out.println("\n////////////////////////////////7\n");
-        player6.getBingoCard().printingCard();
-        System.out.println("\n////////////////////////////////7\n");
-
-
-        contrl.numbersCardControl(player);
-        contrl.numbersCardControl(player2);
-        contrl.numbersCardControl(player3);
-        contrl.numbersCardControl(player4);
-        contrl.numbersCardControl(player5);
-        contrl.numbersCardControl(player6);
-
-
-    }
 }

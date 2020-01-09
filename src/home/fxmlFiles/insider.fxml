@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="home.controller.InsiderController"
-            prefHeight="492.0" prefWidth="701.0">
+
+<AnchorPane prefHeight="492.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.controller.InsiderController">
 
     <children>
         <Circle fill="#265683" layoutX="351.0" layoutY="246.0" radius="126.0" stroke="BLACK" strokeType="INSIDE" />
@@ -26,5 +22,7 @@
         <Button fx:id="moneyBtn" layoutX="609.0" layoutY="120.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Coins" />
         <FlowPane fx:id="playerCard" layoutX="267" layoutY="300.0" prefHeight="152.0" prefWidth="180.0" />
         <HBox fx:id="tableNumbers" layoutX="578.0" prefHeight="95.0" prefWidth="123.0" />
+      <Button fx:id="startBtn" layoutX="318.0" layoutY="26.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="66.0" text="Start" />
+      <Button fx:id="passerBtn" layoutX="317.0" layoutY="202.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="68.0" text="nothing" />
     </children>
 </AnchorPane>

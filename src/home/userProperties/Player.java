@@ -2,6 +2,7 @@ package home.userProperties;
 
 import gameBase.BingoCard;
 
+//Pojo class
 public class Player {
 
     private String name;

@@ -21,19 +21,7 @@ public class BingoCard {
         }
         return card;
     }
-
-    /**
-     * this method only print
-     * the card passed in
-     */
-    public void printingCard(){
-        for(int i = 0; i < card.length; i++) {
-            for(int j = 0; j < card[i].length; j++)
-                System.out.print(card[i][j] + "\t");
-            System.out.println();
-        }
-    }
-
+    //getters and setter
     public String[][] getCard(){
         return card;
     }
