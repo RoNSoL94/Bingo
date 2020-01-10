@@ -1,9 +1,9 @@
 package gameBase;
 import home.userProperties.Player;
+import utilities.CardFunctionsController;
 
-public class GameControls {
+public class GameControls implements CardFunctionsController<String,Player> {
     public static boolean ternoWon,quaternaWon,cinquinaWon = false;
-
     /**
      * This method check if a player win something
      * if the player win the reward it will no
@@ -11,30 +11,35 @@ public class GameControls {
      * @param value
      * @param player
      */
-    private synchronized static void controller(int value, Player player) {
+    public synchronized static String controller(int value, Player player) {
+        String control = "";
         switch (value) {
             case 3:
-                if(!ternoWon)
-                System.out.println("terno " + player.getName());
-                //TODO
+                if(!ternoWon) {
+                    System.out.println("terno " + player.getNickName());
+                    control = " terno" + player.getNickName();
+                }
                 break;
             case 4:
-                if(!quaternaWon)
-                System.out.println("quaterna "+ player.getName());
-                //TODO
+                if(!quaternaWon) {
+                    System.out.println("quaterna " + player.getNickName());
+                    control = " quaterna" + player.getNickName();
+                }
                 break;
             case 5:
-                if(!cinquinaWon)
-                System.out.println("cinquina "+ player.getName());
-                //TODO
+                if(!cinquinaWon) {
+                    System.out.println("cinquina " + player.getNickName());
+                    control = " cinquina" + player.getNickName();
+                }
                 break;
             case 15:
-                System.out.println("tombola "+ player.getName());
+                System.out.println("tombola "+ player.getNickName());
+                control = " tombola" + player.getNickName();
                 /*then take back the player to the start screen*/
-                //TODO
                 System.exit(0);
                 break;
         }
+        return control;
     }
 
     /**
@@ -44,23 +49,34 @@ public class GameControls {
      * @param player
      */
     public void numbersCardControl(Player player) {
+//        TaskController.backgroundTask(() -> {
+//            controllingNumber(player,BingoTable.TABLE);
+//        },300);
         Thread thread = new Thread(() -> {
             while (true)
-            controllingNumber(BingoTable.TABLE,player);
+                controllingNumber(player,BingoTable.TABLE);
+
         });
         thread.start();
         thread.setPriority(Thread.MAX_PRIORITY);
     }
+
+
+
+
+
+    public GameControls() {}
+
     /**
      * this method checks and updates
      * if a player wins
      * @param card
      * @param player
      */
-    private void controllingNumber(String [][] card,Player player){
+    @Override
+    public void controllingNumber(Player player,String [][] card){
         String tmp [] = new String[90];
         int count = 0,countOne = 0,countTwo = 0,tombola = 0;
-
 
         for(int i = 0; i < BingoTable.ROWS; i++) {
             for(int j = 0; j < BingoTable.COL; j++) {
@@ -88,6 +104,9 @@ public class GameControls {
             }
         }
     }
+
+
+
     /**
      * This method check is one of the
      * players win something

@@ -21,6 +21,15 @@ public class Player {
         this.age = age;
         this.bingoCard = bingoCard;
     }
+
+    //generally used to create some AI player
+    public Player(String nickName){
+        this.nickName = nickName;
+        bingoCard = new BingoCard();
+//        bingoCard.creationCard();
+          bingoCard.creationCard();
+    }
+
     public Player(){/*DEFAULT*/}
 
 

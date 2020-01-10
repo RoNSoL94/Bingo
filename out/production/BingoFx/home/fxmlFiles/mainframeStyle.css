@@ -1,0 +1,22 @@
+
+#mainframeBackground {
+    -fx-background-image: url('images/mainframe9.jpg');
+    -fx-background-size: 800px 700px;
+    -fx-background-position: center;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: honeydew;
+    -fx-border-radius: 10%;
+    -fx-border-style: solid;
+    -fx-border-width: 2px;
+    -fx-border-color: grey;
+}
+#balanceBtn {
+    -fx-border-width: 0 2px 2px 2px;
+}
+.button:hover {
+    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.1;
+}
