@@ -1,63 +1,41 @@
 
 #startBtn {
-    -fx-text-fill: aliceblue;
-    -fx-background-color: transparent;
-    -fx-border-radius: 10px;
-    -fx-border-style: solid;
-    -fx-border-color: steelblue;
+    -fx-background-color: goldenrod;
+    -fx-border-radius: 15px;
 }
 #ternoBtn {
-    -fx-text-fill: aliceblue;
-    -fx-background-color: transparent;
-    -fx-border-radius: 10px;
-    -fx-border-style: solid;
-    -fx-border-color: steelblue;
-    -fx-border-width: 2px 2px 2px 0;
+    -fx-background-color: goldenrod;
+    -fx-border-radius: 15px;
 
 }
 #quaternaBtn {
-    -fx-text-fill: aliceblue;
-    -fx-background-color: transparent;
-    -fx-border-radius: 10px;
-    -fx-border-style: solid;
-    -fx-border-color: steelblue;
-    -fx-border-width: 2px 2px 2px 0;
+    -fx-background-color: goldenrod;
+    -fx-border-radius: 15px;
 
 }
 #cinquinaBtn {
-    -fx-text-fill: aliceblue;
-    -fx-background-color: transparent;
-    -fx-border-radius: 10px;
-    -fx-border-style: solid;
-    -fx-border-color: steelblue;
-    -fx-border-width: 2px 2px 2px 0;
+    -fx-background-color: goldenrod;
+    -fx-border-radius: 15px;
 
 }
 #tombolaBtn {
-    -fx-text-fill: aliceblue;
-    -fx-background-color: transparent;
-    -fx-border-radius: 10px;
-    -fx-border-style: solid;
-    -fx-border-color: steelblue;
-    -fx-border-width: 2px 2px 2px 0;
+    -fx-background-color: goldenrod;
+    -fx-border-radius: 15px;
 
 }
 #exitBtn {
-    -fx-text-fill: aliceblue;
-    -fx-background-color: transparent;
-    -fx-border-radius: 10px;
-    -fx-border-style: solid;
-    -fx-border-color: steelblue;
-    -fx-border-width: 2px 2px 2px 0;
+    -fx-background-color: goldenrod;
+    -fx-border-radius: 15px;
 }
 
 #moneyBtn {
-    -fx-text-fill: aliceblue;
-    -fx-background-color: transparent;
-    -fx-border-radius: 10px;
-    -fx-border-style: solid;
-    -fx-border-color: steelblue;
-    -fx-border-width: 2px 0 2px 2px;
+    -fx-background-color: goldenrod;
+    -fx-border-radius: 15px;
+
+}
+#pauseBtn {
+    -fx-background-color: goldenrod;
+    -fx-border-radius: 15px;
 
 }
 
@@ -71,10 +49,29 @@
 #passerBtn:hover{}
 
 #insideBackground {
-    -fx-background-image: url('images/insider7.jpg');
+    -fx-background-image: url('images/insider15.jpg');
     -fx-background-size: 800px 700px;
     -fx-background-position: center;
 }
+#closeSystem {
+    -fx-background-color: transparent;
+    -fx-border-color: goldenrod;
+    -fx-border-radius: 15px;
+    -fx-border-width: 2px 2px 0 2px;
+    -fx-text-fill: goldenrod;
+}
+
+#gameHistory {
+    -fx-border-color: wheat;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+#changeCardBtn {
+    -fx-background-color: goldenrod;
+    -fx-border-radius: 15px;
+}
+
 
 .button:hover {
     -fx-scale-x: 1.1;

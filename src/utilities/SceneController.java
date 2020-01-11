@@ -22,6 +22,7 @@ public interface SceneController {
             Stage stage = new Stage();
             stage.setResizable(false);
             stage.setScene(new Scene(root));
+            stage.setOnCloseRequest(windowEvent -> System.exit(0));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

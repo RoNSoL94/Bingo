@@ -29,5 +29,11 @@ public interface CardFunctionsController<F,T>{
         }
     }
 
-    void controllingNumber(T Object, F [][] card);
+    /**
+     * Control the wins
+     * @param Object
+     * @param card
+     */
+     void controllingNumber(T Object, F [][] card);
+     void controller(int value,T object);
 }

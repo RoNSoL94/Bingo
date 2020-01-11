@@ -1,5 +1,6 @@
 package utilities;
 
+import gameBase.GameControls;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -8,7 +9,6 @@ public interface TaskController {
     /**
      * This method allow to have a thread relate to the
      * gui thread running in background in low priority
-     *
      * @param runnable
      * @param sleepTime
      */
@@ -17,14 +17,16 @@ public interface TaskController {
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                while (true) {
+                while (GameControls.isRUnning) {
                     Platform.runLater(runnable);
                     Thread.sleep(sleepTime);
                 }
+                return null;
             }
         };
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+
     }
 }
