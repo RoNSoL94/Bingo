@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="350.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.controller.InfoController">
+   <children>
+      <TextArea fx:id="infoArea" layoutX="-3.0" prefHeight="350.0" prefWidth="291.0" stylesheets="@mainframeStyle.css" text="                       HELP&#10;&#10;1) To play the game you have to &#10;     ennter a Nickname.&#10;2) Once in the game you must choose&#10;    a card, by pressing choose card.&#10;3) If you don't like the card you can&#10;    change it infinite times.&#10;4)One you have a card you can start&#10;   the game.&#10;5) Note against you, there will be &#10;   some other player (BOT player)&#10;6)In you card you can click on the &#10;   number that get out.&#10;7)Note you can click on any number&#10;  even though it is not out.&#10;  So you can click it but you have&#10;  to be sure to click the   right one &#10;  'cause you can ask for the only &#10;  if you have 3 or more closed &#10;  number.&#10;8) In the system you can see &#10;    all the win history and wich &#10;   player won, you can see or&#10;   close the system wherever &#10;   you want.&#10;&#10;&#10;&#10;&#10;    " />
+   </children>
+</AnchorPane>

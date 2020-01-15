@@ -32,6 +32,8 @@
 #balanceBtn {
     -fx-border-width: 0 2px 2px 2px;
 }
+
+
 .button:hover {
     -fx-scale-y: 1.1;
     -fx-scale-x: 1.1;

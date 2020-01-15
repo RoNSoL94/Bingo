@@ -124,17 +124,16 @@ public class InsiderController implements CardFunctionsController<Button, Player
                             if (button[i][j].isPressed()) button[i][j].setDisable(true);
                         }
                     }
-                }, 1200);
+                }, 700);
 
                 //leaving the rewards once won
                 TaskController.backgroundTask(() -> {
                     if (GameControls.ternoWon) ternoBtn.setVisible(false);
                     if (GameControls.quaternaWon) quaternaBtn.setVisible(false);
                     if (GameControls.cinquinaWon) cinquinaBtn.setVisible(false);
-                }, 2000);
+                }, 450);
 
-//                new BingoTable().outNumberThread(140);
-                game.outNumberThread(9000);
+                new BingoTable().outNumberThread(200);
 
                 //passing values to the GUI
                 TaskController.backgroundTask(() ->
@@ -142,7 +141,7 @@ public class InsiderController implements CardFunctionsController<Button, Player
                     passerBtn.setText(BingoTable.arr[counter]);
                     System.out.println("counter" + counter);
                     counter++;
-                }, 9100);
+                }, 250);
             }else System.out.println("error");
         });
     }
@@ -150,10 +149,10 @@ public class InsiderController implements CardFunctionsController<Button, Player
     /**
      * This method create the card
      * for the player, inside the GUI
-     *
      * @param arr
      */
     public void cards(String arr[][]) {
+        playerCard.getChildren().clear();
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
                 button[i][j] = new Button(arr[i][j]);

@@ -28,4 +28,11 @@ public interface SceneController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Allow you to create
+     * your own scene change
+     * @param path
+     */
+    void uponScene(String path);
 }
