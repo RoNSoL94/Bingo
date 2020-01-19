@@ -34,5 +34,10 @@
             <Font size="15.0" />
          </font>
       </Button>
+      <Button id="playBtn" fx:id="playOnlineBtn" layoutX="21.0" layoutY="94.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="149.0" text="PlayOnline">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

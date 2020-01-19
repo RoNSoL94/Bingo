@@ -15,7 +15,5 @@ public class InfoController {
 
     @FXML
     void initialize() {
-//        helpBtn.setOnAction(ev -> SceneController.changeScene(this, "/fxmlFiles/help.fxml"));
-
     }
 }

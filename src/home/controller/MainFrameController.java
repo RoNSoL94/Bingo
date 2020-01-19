@@ -12,7 +12,7 @@ import utilities.SceneController;
 
 public class MainFrameController implements SceneController {
     @FXML
-    private Button playBtn, helpBtn;
+    private Button playBtn, helpBtn,playOnlineBtn;
 
     @FXML
     private TextField nickField;
@@ -25,13 +25,21 @@ public class MainFrameController implements SceneController {
             if (!nickField.getText().equals("")) {
                 playBtn.getScene().getWindow().hide();
                 //path to update
+                prova = nickField.getText().toLowerCase();
                 SceneController.changeScene(this,"/fxmlFiles/insider.fxml");
-                prova = nickField.getText();
+            }else System.out.println("error");
+        });
+
+        playOnlineBtn.setOnAction((eve) -> {
+            if (!nickField.getText().equals("")) {
+                playBtn.getScene().getWindow().hide();
+                //path to update
+                prova = nickField.getText().toLowerCase();
+                SceneController.changeScene(this,"/fxmlFiles/onlineInsider.fxml");
             }else System.out.println("error");
         });
 
         helpBtn.setOnAction(ev -> uponScene("../fxmlFiles/help.fxml"));
-
     }
 
     /**

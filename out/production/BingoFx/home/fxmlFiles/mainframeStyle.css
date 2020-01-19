@@ -33,6 +33,10 @@
     -fx-border-width: 0 2px 2px 2px;
 }
 
+#ground {
+    -fx-background-color:  darkgray;
+}
+
 
 .button:hover {
     -fx-scale-y: 1.1;

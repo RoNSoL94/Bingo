@@ -28,6 +28,25 @@ public interface CardFunctionsController<F,T>{
             }
         }
     }
+    //constant time used in the server side
+//    static void noDuplicates(int size, String[] array) {
+//        int[] tmp = new int[size];
+//        int count = 1;
+//
+//        for (int i = 0; i < size; i++)
+//            tmp[i] = count++;
+//
+//        count = 0;
+//        int prova = 0;
+//        for (int i = 0; i < size; i++) {
+//            count = (int) (Math.random() * 90);
+//            if (tmp[count] == (count + 1)) {
+//                array[prova] = String.valueOf(count + 1);
+//                tmp[count] = 0;
+//                prova++;
+//            }else i--;
+//        }
+//    }
 
     /**
      * Control the wins

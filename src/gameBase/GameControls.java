@@ -2,7 +2,7 @@ package gameBase;
 
 public class GameControls {
     public static boolean ternoWon,quaternaWon,
-            cinquinaWon = false,isRUnning = true;
+            cinquinaWon = false,tombolaWon = false,isRUnning = true;
 
     /**
      * This method check is one of the
@@ -13,6 +13,7 @@ public class GameControls {
         if(value == 3)ternoWon = true;
         if(value == WinnerCheck.QUATERNA.getNumber())quaternaWon = true;
         if(value == WinnerCheck.CINQUINA.getNumber()) cinquinaWon = true;
+        if(value == WinnerCheck.TOMBOLA.getNumber()) tombolaWon = true;
     }
 
 }

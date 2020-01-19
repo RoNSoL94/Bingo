@@ -1,8 +1,5 @@
 package home.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import gameBase.BingoCard;
 import gameBase.GameControls;
 import gameBase.BingoTable;
@@ -10,140 +7,109 @@ import gameBase.WinnerCheck;
 import home.userProperties.Player;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import utilities.CardFunctionsController;
 import utilities.SceneController;
 import utilities.TaskController;
 
-public class InsiderController implements CardFunctionsController<Button, Player> {
-
-    @FXML
-    private AnchorPane insideBackground;
-    @FXML
-    private VBox gameHistory;
-    @FXML
-    private ResourceBundle resources;
-    @FXML
-    private URL location;
-    @FXML
-    private Button exitBtn, ternoBtn, startBtn,
-            quaternaBtn, cinquinaBtn, passerBtn,
-            tombolaBtn, pauseBtn,closeSystem,changeCardBtn;
-    @FXML
-    public Label winnerLabel;
-    @FXML
-    private GridPane playerCard;
-
-    //TO CHANGE USED JUST SEE
-    BingoTable game = new BingoTable();
-
-    private static int counter = 0;
-    private Button[][] button = new Button[3][5];
-    public static boolean waiting = false;
-    static boolean stabilizer = false;
-
+public class InsiderController extends InsiderOperations implements CardFunctionsController<Button, Player> {
 
     @FXML
     void initialize() {
-        gameHistory.setVisible(false);
-        closeSystem.setVisible(false);
-        ternoBtn.setDisable(true);
-        quaternaBtn.setDisable(true);
-        cinquinaBtn.setDisable(true);
-        tombolaBtn.setDisable(true);
-        passerBtn.setVisible(false);
+          initializer();
 
-        //change scene
-        exitBtn.setOnAction(ev -> {
-            exitBtn.getScene().getWindow().hide();
-            //path to update
-            GameControls.isRUnning = false;
-            SceneController.changeScene(this, "/fxmlFiles/mainFrame.fxml");
-        });
+            //change scene
+            exitBtn.setOnAction(ev -> {
+                exitBtn.getScene().getWindow().hide();
+                //path to update
+                GameControls.isRUnning = false;
+                SceneController.changeScene(this, "/fxmlFiles/mainFrame.fxml");
+            });
 
-        Player player = new Player(MainFrameController.prova, new BingoCard());
+            Player player = new Player(MainFrameController.prova, new BingoCard());
 
-        // if clicked change the card of the player
-        changeCardBtn.setOnAction((v) -> {
-            chooseCard(player);
-            System.out.println(MainFrameController.prova);
-            changeCardBtn.setText("Change Card");
-        });
+            // if clicked change the card of the player
+            changeCardBtn.setOnAction((v) -> {
+                chooseCard(player);
+                System.out.println(MainFrameController.prova);
+                changeCardBtn.setText("Change Card");
+            });
 
-        //starts the game
-        startBtn.setOnAction(ev -> {
-            if(!changeCardBtn.getText().equals("Choose Card")) {
-                starting();
-                for (int i = 0; i < 5; i++)
-                    controllingNumber(new Player("PlayerBot_" + i), button);
+            //starts the game
+            startBtn.setOnAction(ev -> {
+                if (!changeCardBtn.getText().equals("Choose Card")) {
+                    starting();
+                    pauseBtn.setVisible(true);
+                    startBtn.setVisible(false);
 
-                if (startBtn.getText().equals("Play Again")) {
-                    player.getBingoCard().creationCard();
-                    //creates the AI players
                     for (int i = 0; i < 5; i++)
                         controllingNumber(new Player("PlayerBot_" + i), button);
-                } else if (startBtn.getText().equals("Resume")) GameControls.isRUnning = true;
-                else if (startBtn.getText().equals("Play")) {
-                    for (int i = 0; i < 5; i++)
-                        controllingNumber(new Player("PlayerBot_" + i), button);
-                }
 
-                closeSystem.setOnAction((s) -> {
-                    if (closeSystem.getText().equals("Close System")) {
-                        closeSystem.setText("Show System");
-                        gameHistory.setVisible(false);
-                    } else {
-                        closeSystem.setText("Close System");
-                        gameHistory.setVisible(true);
+                    if (startBtn.getText().equals("Play Again")) {
+                        player.getBingoCard().creationCard();
+                        //creates the AI players
+                        for (int i = 0; i < 5; i++)
+                            controllingNumber(new Player("PlayerBot_" + i), button);
+                    } else if (startBtn.getText().equals("Resume")) GameControls.isRUnning = true;
+                    else if (startBtn.getText().equals("Play")) {
+                        for (int i = 0; i < 5; i++)
+                            controllingNumber(new Player("PlayerBot_" + i), button);
                     }
-                });
-                //listener
-                ternoBtn.setOnAction(eve -> controllingNumber(player, button));
-                //listener
-                quaternaBtn.setOnAction(eve -> controllingNumber(player, button));
-                //listener
-                cinquinaBtn.setOnAction(event -> controllingNumber(player, button));
-                //listener
-                tombolaBtn.setOnAction(events -> controllingNumber(player, button));
-                //listener
-                pauseBtn.setOnAction(events -> {
-                    waiting = true;
-                    GameControls.isRUnning = false;
-                    startBtn.setText("Resume");
-                    startBtn.setVisible(true);
-                });
 
-                //checking the buttonCardToBeClicked
-                TaskController.backgroundTask(() -> {
-                    int cnt = 0;
-                    for (int i = 0; i < 3; i++) {
-                        for (int j = 0; j < 5; j++) {
-                            if (button[i][j].isPressed()) button[i][j].setDisable(true);
+                    closeSystem.setOnAction((s) -> {
+                        if (closeSystem.getText().equals("Close System")) {
+                            closeSystem.setText("Show System");
+                            gameHistory.setVisible(false);
+                        } else {
+                            closeSystem.setText("Close System");
+                            gameHistory.setVisible(true);
                         }
-                    }
-                }, 700);
+                    });
+                    //listener
+                    ternoBtn.setOnAction(eve -> controllingNumber(player, button));
+                    //listener
+                    quaternaBtn.setOnAction(eve -> controllingNumber(player, button));
+                    //listener
+                    cinquinaBtn.setOnAction(event -> controllingNumber(player, button));
+                    //listener
+                    tombolaBtn.setOnAction(events -> controllingNumber(player, button));
+                    //listener
+                    pauseBtn.setOnAction(events -> {
+                        waiting = true;
+                        GameControls.isRUnning = false;
+                        startBtn.setText("Resume");
+                        startBtn.setVisible(true);
+                    });
 
-                //leaving the rewards once won
-                TaskController.backgroundTask(() -> {
-                    if (GameControls.ternoWon) ternoBtn.setVisible(false);
-                    if (GameControls.quaternaWon) quaternaBtn.setVisible(false);
-                    if (GameControls.cinquinaWon) cinquinaBtn.setVisible(false);
-                }, 450);
+                    //checking the buttonCardToBeClicked
+                    TaskController.backgroundTask(() -> {
+                        int cnt = 0;
+                        for (int i = 0; i < 3; i++) {
+                            for (int j = 0; j < 5; j++) {
+                                if (button[i][j].isPressed()) button[i][j].setDisable(true);
+                            }
+                        }
+                    }, 700);
 
-                new BingoTable().outNumberThread(200);
+                    TaskController.backgroundTask(() -> cardControl(button), 400);
 
-                //passing values to the GUI
-                TaskController.backgroundTask(() ->
-                {
-                    passerBtn.setText(BingoTable.arr[counter]);
-                    System.out.println("counter" + counter);
-                    counter++;
-                }, 250);
-            }else System.out.println("error");
-        });
+                    //leaving the rewards once won
+                    TaskController.backgroundTask(() -> {
+                        if (GameControls.ternoWon) ternoBtn.setVisible(false);
+                        if (GameControls.quaternaWon) quaternaBtn.setVisible(false);
+                        if (GameControls.cinquinaWon) cinquinaBtn.setVisible(false);
+                    }, 450);
+
+                    new BingoTable().outNumberThread(200);
+
+                    //passing values to the GUI
+                    TaskController.backgroundTask(() ->
+                    {
+                        passerBtn.setText(BingoTable.arr[counter]);
+                        System.out.println("counter" + counter);
+                        counter++;
+                    }, 250);
+                } else System.out.println("error");
+            });
     }
 
     /**
@@ -165,57 +131,13 @@ public class InsiderController implements CardFunctionsController<Button, Player
         }
     }
 
-    /**
-     * Makes the wins button visible
-     * dependent if they have enough number
-     * to do that
-     * @param value
-     * @return
-     */
-    private int hideBtnControl(int value) {
-        switch (value) {
-            case 3:
-                ternoBtn.setDisable(false);
-                break;
-            case 4:
-                quaternaBtn.setDisable(false);
-                break;
-            case 5:
-                cinquinaBtn.setDisable(false);
-                break;
-            case 15:
-                tombolaBtn.setDisable(false);
-        }
-        return value;
-    }
-
     @Override
     public void controllingNumber(Player player, Button[][] btn) {
         TaskController.backgroundTask(() -> {
             int count = 0, countOne = 0, countTwo = 0, tombola;
 
-            for (int j = 0; j < 5; j++) {
-                if (btn[0][j].isDisabled()) {
-                    count++;
-                    hideBtnControl(count);
-                }
-                if (btn[1][j].isDisabled()) {
-                    countOne++;
-                    hideBtnControl(countOne);
-                }
-                if (btn[2][j].isDisabled()) {
-                    countTwo++;
-                    hideBtnControl(countTwo);
-                }
-                tombola = (count + countOne + countTwo);
-                if (tombola == 15)
-                    hideBtnControl(tombola);
-            }
 
             String tmp[] = new String[90];
-            count = 0;
-            countOne = 0;
-            countTwo = 0;
             for (int i = 0; i < BingoTable.ROWS; i++) {
                 for (int j = 0; j < BingoTable.COL; j++) {
                     tmp[count++] = BingoTable.TABLE[i][j];/*card is the BingoTable*/
@@ -265,22 +187,6 @@ public class InsiderController implements CardFunctionsController<Button, Player
                 restart();
         }
     }
-
-    /**
-     * The method checks all the
-     * wins and store them and
-     * prints them on the screen
-     * @param txt
-     */
-    private void gameHistoryController(String txt){
-        Label label = new Label(txt);
-        label.setPrefSize(250,15);
-        label.setStyle("-fx-text-fill: aliceblue;");
-        gameHistory.getChildren().add(label);
-        closeSystem.setVisible(true);
-        gameHistory.setVisible(true);
-    }
-
     /**
      * Allow palyers to choose
      * or change the card
@@ -291,43 +197,4 @@ public class InsiderController implements CardFunctionsController<Button, Player
         cards(player.getBingoCard().getCard());
     }
 
-    /**
-     * Takes the component
-     * and controllers to
-     * the default state
-     */
-    private void restart() {
-        GameControls.isRUnning = false;
-        ternoBtn.setVisible(true);
-        quaternaBtn.setVisible(true);
-        cinquinaBtn.setVisible(true);
-        tombolaBtn.setVisible(true);
-        pauseBtn.setVisible(false);
-        exitBtn.setVisible(true);
-        gameHistory.setVisible(false);
-        counter = 0;
-        startBtn.setText("Play Again");
-        startBtn.setPrefSize(100,40);
-        startBtn.setVisible(true);
-    }
-
-    /**
-     * Takes the component
-     * and controllers(boolean)
-     * to the active state
-     */
-    private void starting(){
-        changeCardBtn.setVisible(false);
-        gameHistory.getChildren().clear();
-        pauseBtn.setVisible(true);
-        GameControls.ternoWon = false;
-        GameControls.quaternaWon = false;
-        GameControls.cinquinaWon = false;
-        waiting = false;
-        stabilizer = false;
-        GameControls.isRUnning = true;
-        startBtn.setVisible(false);
-        passerBtn.setVisible(true);
-        exitBtn.setVisible(false);
-    }
 }
